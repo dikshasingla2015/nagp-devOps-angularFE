@@ -1,0 +1,63 @@
+<h1>NAGP DevOps Assignment - 2022</h1>
+
+<div class="container">
+    <div class="card" [style]="{'margin-bottom': '2em'}">
+        <div class="card-header text-center">Add Employee Details</div>
+        <div class="card-body">
+            <form class="needs-validation" nonvalidate [formGroup]="addEmployeeForm">
+                <div class="form-group">
+                    <label for="employee-name">Enter Employee Name</label>
+                    <input type="text" class="form-control" id="employee-name" formControlName="employeeName"
+                        [ngClass]="getControlValidationClasses(employeeNameControl)">
+                    <div class="invalid-feedback"
+                        *ngIf="employeeNameControl.touched && employeeNameControl.errors?.required">
+                        Please enter employee name
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age-control">Enter Employee Age</label>
+                    <input type="text" class="form-control" id="age-control" formControlName="age"
+                        [ngClass]="getControlValidationClasses(ageControl)">
+                    <div class="invalid-feedback" *ngIf="ageControl.touched && ageControl.errors?.required">
+                        Please enter age
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="designation-control">Enter Designation</label>
+                    <input type="text" class="form-control" id="designation-control" formControlName="designation"
+                        [ngClass]="getControlValidationClasses(designationControl)">
+                    <div class="invalid-feedback"
+                        *ngIf="designationControl.touched && designationControl.errors?.required">
+                        Please enter designation
+                    </div>
+                </div>
+                <div style="text-align: center; padding: 3px;">
+                    <button type="submit" class="btn btn-success" [disabled]="!addEmployeeForm.valid"
+                        (click)="onAddEmployeeSubmit()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="employees">
+    <table class="table table-hover bg-light table-bordered"
+        style="max-width: 70rem; margin: auto; margin-top: 15px; margin-bottom: 10px;">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Employee Id</th>
+                <th scope="col" class="text-center">Employee Name</th>
+                <th scope="col" class="text-center">Age</th>
+                <th scope="col" class="text-center">Designation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.id}}</td>
+                <td>{{employee.employeeName}}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.designation}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
