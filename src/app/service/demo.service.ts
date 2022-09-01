@@ -9,7 +9,7 @@ export class DemoService {
 
   constructor(private http: HttpClient) { }
 
-  readonly URL = 'http://nagp-xyz-LB-1601556795.us-east-1.elb.amazonaws.com';
+  readonly URL = 'http://34.69.228.213:80';
 
   async getAllEmployees() {
     const res = await this.http.get(this.URL + '/getAllEmployees').toPromise()
